@@ -1,0 +1,41 @@
+%preamble starts here
+\documentclass[ ] {book}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphics}
+\usepackage[colorlinks, linkcolor={blue},citecolor={black},pagecolor={black},urlcolor={black},%
+ breaklinks, bookmarks, bookmarksopen, bookmarksnumbered]{hyperref}
+\hyphenation{Co-or-di-nate Mi-ami Isopy-c-nal}
+\makeindex
+
+\newcommand{\degrees}{$^{\circ}$}
+\newcommand{\vitem}{\item \vspace{-1.0ex}}
+\newcommand{\D}{\displaystyle}
+\markboth{}{}
+
+%the next line allows the @character to be used in redefining commands
+\makeatletter 
+\renewcommand{\section}   {\@startsection{section}   {1}{0pt}{\baselineskip}{0.1pt}{\normalfont\normalsize\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0pt}{-0.5\baselineskip}{0.1pt}{\normalfont\normalsize\bfseries}}
+\renewcommand{\paragraph} {\@startsection{paragraph}
+{4}{0pt}{-0.5\baselineskip}{-0.5em}{\normalfont\normalsize\bfseries}}
+%the next line returns @ to its default useage
+\makeatother
+
+\setcounter{tocdepth}{3}
+%preamble ends here
+
+\begin{document}
+\frontmatter
+\include{title}
+\mainmatter
+\include{chapters}
+\backmatter
+\include{ref}
+\addcontentsline{toc}{chapter}{Index}
+\setlength{\textwidth}{12.5cm}
+\setlength{\columnsep}{1.0cm}
+\printindex
+\end{document}
