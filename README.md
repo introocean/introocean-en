@@ -4,12 +4,12 @@
 **Based on the work of Robert Stewart**
 
 Robert Stewart's "Introduction to Physical Oceanography" was 
-a first oceanography textbook for many students. 
+the first oceanography textbook for many students. 
 It was always the free high-quality source of basic 
 oceanographic knowledge. Robert Stewart retired in 
 2009 and did not update the book after that. 
 With his permission, we now publish the latest 
-version of the book's Latex source code on GitHub. 
+version of the book's LaTeX source code on GitHub. 
 Dr. Stewart gives his permission to update the book
 by fixing errors and adding new information. He has 
 only two conditions:
@@ -27,7 +27,7 @@ drifters.
 for sale. It should be open source and available 
 to everyone at no cost.
 
-We are going to update the book using the usual
+We are going to update the book through the usual
 GitHub procedure with PRs and code review. Any
 help and contributions from the oceanographic 
 community will be greatly appreciated.
