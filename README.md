@@ -1,4 +1,6 @@
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+[![Latest Release](https://img.shields.io/badge/-Latest%20Release-lightgrey.svg)](https://github.com/introocean/introocean-en/releases/latest)
+
 
 # Introduction to Physical Oceanography, open-source edition
 **Based on the work of Robert Stewart**
