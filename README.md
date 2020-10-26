@@ -18,7 +18,7 @@ only two conditions:
 
 > Don’t let the book grow into an encyclopedia. 
 It is an INTRODUCTION, leaving details to more
-expertand focused publications (which could also
+expert and focused publications (which could also
 be on the web server). Keep the book focused on the
 most important issues students need to know about.
 Today, satellite oceanography needs to be emphasized
