@@ -1,0 +1,38 @@
+name: Build PDF
+
+on: ["push", "pull_request"]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Micromamba
+      uses: mamba-org/provision-with-micromamba@v13
+      with:
+        environment-file: false
+
+    - name: Create environment
+      shell: bash -l {0}
+      run: |
+        micromamba create --name TEST tectonic --channel conda-forge
+        micromamba activate TEST
+        mkdir -p compiled_book
+        tectonic book.tex
+        mv book.pdf compiled_book/
+
+    - name: Upload artifacts to Github
+      uses: actions/upload-artifact@v3
+      with:
+        path: compiled_book/
+
+    - name: Upload artifacts to Github release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: compiled_book/book.pdf
+        tag: ${{ github.ref }}
+        overwrite: true
+        file_glob: true
+      if: startsWith(github.ref, 'refs/tags/')

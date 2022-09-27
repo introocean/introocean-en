@@ -1,0 +1,19 @@
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v3.3.0
+  hooks:
+    - id: trailing-whitespace
+    - id: end-of-file-fixer
+
+- repo: https://github.com/codespell-project/codespell
+  rev: v1.17.1
+  hooks:
+    - id: codespell
+      args:
+        - --builtin=clear
+        - --ignore-words-list=ane,masia,horizontale
+      exclude: >
+          (?x)^(
+              .*\.eps
+              .*\.pdf
+          )$
