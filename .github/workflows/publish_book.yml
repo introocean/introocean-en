@@ -27,11 +27,16 @@ jobs:
       with:
         path: compiled_book/
 
+    - name: Rename book to tag
+      if: startsWith(github.ref, 'refs/tags/')
+      shell: bash -l {0}
+      run: mv compiled_book/book.pdf compiled_book/${{ github.ref_name }}.pdf
+
     - name: Upload artifacts to Github release
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: compiled_book/book.pdf
+        file: compiled_book/*.pdf
         tag: ${{ github.ref }}
         overwrite: true
         file_glob: true
