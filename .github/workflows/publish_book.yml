@@ -8,19 +8,20 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Setup Micromamba
-      uses: mamba-org/provision-with-micromamba@v13
+    - name: Setup Micromamba Python ${{ matrix.python-version }}
+      uses: mamba-org/setup-micromamba@v1
       with:
-        environment-file: false
+        environment-name: TEST
+        init-shell: bash
+        create-args: >-
+          tectonic --channel conda-forge
 
     - name: Create environment
       shell: bash -l {0}
-      run: |
-        micromamba create --name TEST tectonic --channel conda-forge
-        micromamba activate TEST
+      run: >
         mkdir -p compiled_book
-        tectonic book.tex
-        mv book.pdf compiled_book/
+        && tectonic book.tex
+        && mv book.pdf compiled_book/
 
     - name: Upload artifacts to Github
       uses: actions/upload-artifact@v3
