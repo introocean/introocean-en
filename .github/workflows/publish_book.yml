@@ -8,30 +8,36 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Setup Micromamba
-      uses: mamba-org/provision-with-micromamba@v13
+    - name: Setup Micromamba Python ${{ matrix.python-version }}
+      uses: mamba-org/setup-micromamba@v1
       with:
-        environment-file: false
+        environment-name: TEST
+        init-shell: bash
+        create-args: >-
+          tectonic --channel conda-forge
 
     - name: Create environment
       shell: bash -l {0}
-      run: |
-        micromamba create --name TEST tectonic --channel conda-forge
-        micromamba activate TEST
+      run: >
         mkdir -p compiled_book
-        tectonic book.tex
-        mv book.pdf compiled_book/
+        && tectonic book.tex
+        && mv book.pdf compiled_book/
 
     - name: Upload artifacts to Github
       uses: actions/upload-artifact@v3
       with:
         path: compiled_book/
 
+    - name: Rename book to tag
+      if: startsWith(github.ref, 'refs/tags/')
+      shell: bash -l {0}
+      run: mv compiled_book/book.pdf compiled_book/${{ github.ref_name }}.pdf
+
     - name: Upload artifacts to Github release
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: compiled_book/book.pdf
+        file: compiled_book/*.pdf
         tag: ${{ github.ref }}
         overwrite: true
         file_glob: true
